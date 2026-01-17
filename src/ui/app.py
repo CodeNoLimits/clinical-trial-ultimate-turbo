@@ -450,6 +450,37 @@ def run_fast_screening(patient_data: dict, trial_protocol: str, trial_id: str, p
         return None
 
 
+def normalize_patient_data(patient: dict) -> dict:
+    """
+    Normalize patient data to the format expected by the agent.
+    Maps common CSV column names to the expected field names.
+    """
+    normalized = dict(patient)  # Copy original
+
+    # Map gender -> sex
+    if "gender" in patient and "sex" not in patient:
+        normalized["sex"] = patient["gender"]
+
+    # Map comorbidities -> diagnoses
+    if "comorbidities" in patient and "diagnoses" not in patient:
+        normalized["diagnoses"] = patient["comorbidities"]
+        normalized["conditions"] = patient["comorbidities"]
+
+    # Map current_medications -> medications
+    if "current_medications" in patient and "medications" not in patient:
+        normalized["medications"] = patient["current_medications"]
+
+    # Create labs dict if hba1c/egfr are at top level
+    if "labs" not in patient:
+        normalized["labs"] = {}
+        if "hba1c" in patient:
+            normalized["labs"]["hba1c"] = patient["hba1c"]
+        if "egfr" in patient:
+            normalized["labs"]["egfr"] = patient["egfr"]
+
+    return normalized
+
+
 def run_turbo_batch(patients: list, trial_protocol: str, trial_id: str, progress_bar, status_text) -> list:
     """
     Run ULTIMATE TURBO parallel batch screening with FULL EXPLAINABILITY.
@@ -472,9 +503,12 @@ def run_turbo_batch(patients: list, trial_protocol: str, trial_id: str, progress
             if status_text:
                 status_text.info(message)
 
+        # Normalize patient data for agent compatibility
+        normalized_patients = [normalize_patient_data(p) for p in patients]
+
         async def _async_batch():
             return await agent.batch_screen_parallel_advanced(
-                patients=patients,
+                patients=normalized_patients,
                 trial_protocol=trial_protocol,
                 trial_id=trial_id,
                 progress_callback=progress_callback
