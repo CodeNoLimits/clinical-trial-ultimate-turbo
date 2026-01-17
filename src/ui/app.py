@@ -288,7 +288,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### 🎙️ Voice Screening")
 st.sidebar.markdown(
     """
-    <a href="https://clinical-trial-screening-assistant.vercel.app" target="_blank"
+    <a href="https://ai.studio/apps/drive/1RHgR6Ej9SXeIQ4b_xLcpbBwm7AqzjZXt?fullscreenApplet=true" target="_blank"
        style="display: inline-block; background: linear-gradient(135deg, #3B82F6, #8B5CF6);
               color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none;
               font-weight: bold; text-align: center; width: 100%; box-sizing: border-box;">
