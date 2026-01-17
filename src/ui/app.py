@@ -264,44 +264,23 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
-    .stApp { max-width: 1400px; margin: 0 auto; }
-    .eligibility-eligible {
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        color: white; padding: 20px; border-radius: 10px;
-        text-align: center; font-size: 28px; font-weight: bold;
-    }
-    .eligibility-ineligible {
-        background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
-        color: white; padding: 20px; border-radius: 10px;
-        text-align: center; font-size: 28px; font-weight: bold;
-    }
-    .eligibility-uncertain {
-        background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
-        color: black; padding: 20px; border-radius: 10px;
-        text-align: center; font-size: 28px; font-weight: bold;
-    }
-    .api-status {
-        display: flex; align-items: center; gap: 8px;
-        padding: 5px 10px; border-radius: 5px; font-size: 12px;
-    }
-    .api-status-ok { background: #d4edda; color: #155724; }
-    .api-status-error { background: #f8d7da; color: #721c24; }
-    .green-dot {
-        width: 10px; height: 10px; border-radius: 50%;
-        background: #28a745; display: inline-block;
-    }
-    .red-dot {
-        width: 10px; height: 10px; border-radius: 50%;
-        background: #dc3545; display: inline-block;
-    }
-    .dev-badge {
-        background: #6f42c1; color: white;
-        padding: 3px 8px; border-radius: 10px; font-size: 11px;
-    }
-</style>
-""", unsafe_allow_html=True)
+
+# =============================================================================
+# THEME CONFIGURATION
+# =============================================================================
+from src.ui.styles import get_css
+
+# Sidebar Theme Selector
+theme_mode = st.sidebar.selectbox(
+    "Theme Mode", 
+    ["Neo-Glass", "Standard", "Midnight"],
+    index=0,
+    help="Select 'Neo-Glass' for the premium animated experience."
+)
+
+# Inject CSS based on selection
+st.markdown(get_css(theme_mode), unsafe_allow_html=True)
+
 
 
 # =============================================================================
