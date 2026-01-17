@@ -274,14 +274,31 @@ from src.ui.styles import get_css
 theme_mode = st.sidebar.selectbox(
     "Theme Mode",
     ["Midnight Pro", "Clinical Clean"],
-    index=1,  # Temp: Clinical Clean for testing
+    index=0,  # Default: Midnight Pro
     help="Midnight Pro (dark) or Clinical Clean (light)"
 )
 
 # Inject CSS based on selection
 st.markdown(get_css(theme_mode), unsafe_allow_html=True)
 
-
+# =============================================================================
+# VOICE AGENT LINK
+# =============================================================================
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🎙️ Voice Screening")
+st.sidebar.markdown(
+    """
+    <a href="https://clinical-trial-screening-assistant.vercel.app" target="_blank"
+       style="display: inline-block; background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+              color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none;
+              font-weight: bold; text-align: center; width: 100%; box-sizing: border-box;">
+        🎤 Start Voice Session
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+st.sidebar.caption("Talk to our AI assistant for voice-guided eligibility screening")
+st.sidebar.markdown("---")
 
 # =============================================================================
 # SESSION STATE
