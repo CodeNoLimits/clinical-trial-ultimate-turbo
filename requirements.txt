@@ -1,0 +1,29 @@
+# Clinical Trial ULTIMATE TURBO - Full Dependencies
+# Best of both worlds: Speed + Explainability
+
+# Core LLM - Multi-provider support
+langchain-google-genai>=2.0.0
+langchain-openai>=0.2.0
+langchain-core>=0.3.0
+
+# UI
+streamlit>=1.40.0
+plotly>=5.22.0
+
+# Data
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Database (persistence)
+supabase>=2.0.0
+
+# RAG / Vector DB (optional - for advanced features)
+# chromadb>=0.4.0
+# sentence-transformers>=2.2.0
+# rank-bm25>=0.2.2
+
+# Utilities
+python-dotenv>=1.0.0
+
+# ClinicalTrials.gov API
+requests>=2.31.0
