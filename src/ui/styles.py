@@ -213,7 +213,7 @@ def get_css(theme: str) -> str:
             background-color: #ffffff;
         }
 
-        /* ALL TEXT */
+        /* ALL TEXT - Force dark text everywhere */
         .stApp, .stApp p, .stApp span, .stApp label, .stApp div {
             color: #1f2328 !important;
         }
@@ -254,31 +254,75 @@ def get_css(theme: str) -> str:
             font-weight: 500;
         }
 
-        /* Input fields */
-        .stTextInput input, .stNumberInput input, .stTextArea textarea {
+        /* ============================================ */
+        /* INPUT FIELDS - COMPREHENSIVE TEXT FIX */
+        /* ============================================ */
+
+        /* All text inputs */
+        .stTextInput input,
+        .stTextInput input::placeholder,
+        .stTextInput div input {
             background-color: #ffffff !important;
             border: 1px solid #d0d7de !important;
             border-radius: 6px;
             color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
         }
 
-        .stTextInput input:focus, .stNumberInput input:focus, .stTextArea textarea:focus {
+        /* Number inputs */
+        .stNumberInput input,
+        .stNumberInput div input {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
+        }
+
+        /* Textareas */
+        .stTextArea textarea,
+        .stTextArea div textarea {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            border-radius: 6px;
+            color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
+        }
+
+        /* Placeholder text */
+        .stTextInput input::placeholder,
+        .stTextArea textarea::placeholder {
+            color: #656d76 !important;
+            -webkit-text-fill-color: #656d76 !important;
+            opacity: 1 !important;
+        }
+
+        /* Focus states */
+        .stTextInput input:focus,
+        .stNumberInput input:focus,
+        .stTextArea textarea:focus {
             border-color: #0969da !important;
             box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15) !important;
             background-color: #ffffff !important;
+            color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
         }
 
-        /* Selectbox - COMPREHENSIVE FIX */
+        /* ============================================ */
+        /* SELECTBOX - COMPREHENSIVE FIX */
+        /* ============================================ */
+
         .stSelectbox > div > div,
         .stSelectbox [data-baseweb="select"],
-        .stSelectbox [data-baseweb="select"] > div {
+        .stSelectbox [data-baseweb="select"] > div,
+        .stSelectbox div[data-baseweb="select"] {
             background-color: #ffffff !important;
             border: 1px solid #d0d7de !important;
             border-radius: 6px;
         }
 
         .stSelectbox [data-baseweb="select"] span,
-        .stSelectbox [data-baseweb="select"] div {
+        .stSelectbox [data-baseweb="select"] div,
+        .stSelectbox span {
             color: #1f2328 !important;
             background-color: transparent !important;
         }
@@ -288,17 +332,21 @@ def get_css(theme: str) -> str:
         }
 
         /* Dropdown menu for light theme */
-        [data-baseweb="popover"] {
+        [data-baseweb="popover"],
+        [data-baseweb="popover"] > div {
             background-color: #ffffff !important;
             border: 1px solid #d0d7de !important;
             box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
         }
 
-        [data-baseweb="menu"] {
+        [data-baseweb="menu"],
+        [data-baseweb="menu"] ul {
             background-color: #ffffff !important;
         }
 
-        [data-baseweb="menu"] li {
+        [data-baseweb="menu"] li,
+        [data-baseweb="menu"] li div,
+        [data-baseweb="menu"] li span {
             background-color: #ffffff !important;
             color: #1f2328 !important;
         }
@@ -307,7 +355,10 @@ def get_css(theme: str) -> str:
             background-color: #f6f8fa !important;
         }
 
-        /* Sidebar */
+        /* ============================================ */
+        /* SIDEBAR - ALL ELEMENTS */
+        /* ============================================ */
+
         section[data-testid="stSidebar"] {
             background-color: #f6f8fa !important;
             border-right: 1px solid #d0d7de !important;
@@ -321,12 +372,28 @@ def get_css(theme: str) -> str:
             color: #1f2328 !important;
         }
 
-        /* Sidebar inputs */
+        /* Sidebar inputs - FORCE DARK TEXT */
         section[data-testid="stSidebar"] .stTextInput input,
-        section[data-testid="stSidebar"] .stTextArea textarea {
+        section[data-testid="stSidebar"] input {
             background-color: #ffffff !important;
             border: 1px solid #d0d7de !important;
             color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
+        }
+
+        section[data-testid="stSidebar"] .stTextArea textarea,
+        section[data-testid="stSidebar"] textarea {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            color: #1f2328 !important;
+            -webkit-text-fill-color: #1f2328 !important;
+        }
+
+        section[data-testid="stSidebar"] input::placeholder,
+        section[data-testid="stSidebar"] textarea::placeholder {
+            color: #656d76 !important;
+            -webkit-text-fill-color: #656d76 !important;
+            opacity: 1 !important;
         }
 
         /* Sidebar selectbox */
@@ -341,7 +408,10 @@ def get_css(theme: str) -> str:
             color: #1f2328 !important;
         }
 
-        /* Tabs */
+        /* ============================================ */
+        /* TABS */
+        /* ============================================ */
+
         .stTabs [data-baseweb="tab-list"] {
             background-color: transparent;
         }
@@ -355,7 +425,10 @@ def get_css(theme: str) -> str:
             border-bottom-color: #0969da !important;
         }
 
-        /* Buttons */
+        /* ============================================ */
+        /* BUTTONS */
+        /* ============================================ */
+
         .stButton button {
             background-color: #f6f8fa !important;
             color: #1f2328 !important;
@@ -382,6 +455,33 @@ def get_css(theme: str) -> str:
         button[kind="primary"]:hover {
             background-color: #1a7f37 !important;
         }
+
+        /* ============================================ */
+        /* FILE UPLOADER */
+        /* ============================================ */
+
+        [data-testid="stFileUploader"],
+        [data-testid="stFileUploader"] > div,
+        [data-testid="stFileUploader"] section {
+            background-color: #ffffff !important;
+            border: 2px dashed #d0d7de !important;
+            border-radius: 6px;
+        }
+
+        [data-testid="stFileUploader"] label,
+        [data-testid="stFileUploader"] span,
+        [data-testid="stFileUploader"] p,
+        [data-testid="stFileUploader"] div {
+            color: #1f2328 !important;
+        }
+
+        [data-testid="stFileUploader"] small {
+            color: #656d76 !important;
+        }
+
+        /* ============================================ */
+        /* OTHER ELEMENTS */
+        /* ============================================ */
 
         /* Metrics */
         [data-testid="stMetricValue"] {
@@ -413,18 +513,6 @@ def get_css(theme: str) -> str:
         /* Dividers */
         hr {
             border-color: #d0d7de !important;
-        }
-
-        /* File uploader */
-        [data-testid="stFileUploader"] {
-            background-color: #ffffff !important;
-            border: 1px dashed #d0d7de !important;
-        }
-
-        [data-testid="stFileUploader"] label,
-        [data-testid="stFileUploader"] span,
-        [data-testid="stFileUploader"] p {
-            color: #1f2328 !important;
         }
 
         /* Number input buttons */
