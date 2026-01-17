@@ -130,7 +130,8 @@ def get_llm(fast: bool = True, provider: str = None):
             provider = "google"  # Default
 
     if provider == "google":
-        model = "gemini-2.0-flash-exp" if fast else "gemini-2.0-flash"
+        # Use gemini-2.0-flash (non-exp) for better rate limits
+        model = "gemini-2.0-flash"  # Higher quota than -exp version
         cache_key = f"google_{model}"
 
         if cache_key not in _llm_cache:
