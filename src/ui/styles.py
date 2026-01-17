@@ -73,14 +73,38 @@ def get_css(theme: str) -> str:
             box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15) !important;
         }
 
-        /* Selectbox */
-        .stSelectbox div[data-baseweb="select"] {
+        /* Selectbox - all parts */
+        .stSelectbox > div > div {
             background-color: #161b22 !important;
             border-color: #30363d !important;
         }
 
-        .stSelectbox div[data-baseweb="select"] span {
+        .stSelectbox [data-baseweb="select"] > div {
+            background-color: #161b22 !important;
+            border-color: #30363d !important;
+        }
+
+        .stSelectbox [data-baseweb="select"] span {
             color: #e6edf3 !important;
+        }
+
+        /* Dropdown menu */
+        [data-baseweb="popover"] {
+            background-color: #161b22 !important;
+            border: 1px solid #30363d !important;
+        }
+
+        [data-baseweb="menu"] {
+            background-color: #161b22 !important;
+        }
+
+        [data-baseweb="menu"] li {
+            background-color: #161b22 !important;
+            color: #e6edf3 !important;
+        }
+
+        [data-baseweb="menu"] li:hover {
+            background-color: #30363d !important;
         }
 
         /* Sidebar */
@@ -232,7 +256,7 @@ def get_css(theme: str) -> str:
 
         /* Input fields */
         .stTextInput input, .stNumberInput input, .stTextArea textarea {
-            background-color: #f6f8fa !important;
+            background-color: #ffffff !important;
             border: 1px solid #d0d7de !important;
             border-radius: 6px;
             color: #1f2328 !important;
@@ -241,16 +265,46 @@ def get_css(theme: str) -> str:
         .stTextInput input:focus, .stNumberInput input:focus, .stTextArea textarea:focus {
             border-color: #0969da !important;
             box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15) !important;
+            background-color: #ffffff !important;
         }
 
-        /* Selectbox */
-        .stSelectbox div[data-baseweb="select"] {
-            background-color: #f6f8fa !important;
-            border-color: #d0d7de !important;
+        /* Selectbox - COMPREHENSIVE FIX */
+        .stSelectbox > div > div,
+        .stSelectbox [data-baseweb="select"],
+        .stSelectbox [data-baseweb="select"] > div {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            border-radius: 6px;
         }
 
-        .stSelectbox div[data-baseweb="select"] span {
+        .stSelectbox [data-baseweb="select"] span,
+        .stSelectbox [data-baseweb="select"] div {
             color: #1f2328 !important;
+            background-color: transparent !important;
+        }
+
+        .stSelectbox svg {
+            fill: #1f2328 !important;
+        }
+
+        /* Dropdown menu for light theme */
+        [data-baseweb="popover"] {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+        }
+
+        [data-baseweb="menu"] {
+            background-color: #ffffff !important;
+        }
+
+        [data-baseweb="menu"] li {
+            background-color: #ffffff !important;
+            color: #1f2328 !important;
+        }
+
+        [data-baseweb="menu"] li:hover {
+            background-color: #f6f8fa !important;
         }
 
         /* Sidebar */
@@ -262,7 +316,28 @@ def get_css(theme: str) -> str:
         section[data-testid="stSidebar"] .stMarkdown,
         section[data-testid="stSidebar"] p,
         section[data-testid="stSidebar"] span,
-        section[data-testid="stSidebar"] label {
+        section[data-testid="stSidebar"] label,
+        section[data-testid="stSidebar"] div {
+            color: #1f2328 !important;
+        }
+
+        /* Sidebar inputs */
+        section[data-testid="stSidebar"] .stTextInput input,
+        section[data-testid="stSidebar"] .stTextArea textarea {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+            color: #1f2328 !important;
+        }
+
+        /* Sidebar selectbox */
+        section[data-testid="stSidebar"] .stSelectbox > div > div,
+        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"],
+        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > div {
+            background-color: #ffffff !important;
+            border: 1px solid #d0d7de !important;
+        }
+
+        section[data-testid="stSidebar"] .stSelectbox span {
             color: #1f2328 !important;
         }
 
@@ -332,6 +407,7 @@ def get_css(theme: str) -> str:
         .stAlert {
             background-color: #f6f8fa !important;
             border: 1px solid #d0d7de !important;
+            color: #1f2328 !important;
         }
 
         /* Dividers */
@@ -341,11 +417,29 @@ def get_css(theme: str) -> str:
 
         /* File uploader */
         [data-testid="stFileUploader"] {
-            background-color: #f6f8fa !important;
+            background-color: #ffffff !important;
             border: 1px dashed #d0d7de !important;
         }
 
-        [data-testid="stFileUploader"] label {
+        [data-testid="stFileUploader"] label,
+        [data-testid="stFileUploader"] span,
+        [data-testid="stFileUploader"] p {
+            color: #1f2328 !important;
+        }
+
+        /* Number input buttons */
+        .stNumberInput button {
+            background-color: #f6f8fa !important;
+            border: 1px solid #d0d7de !important;
+            color: #1f2328 !important;
+        }
+
+        .stNumberInput button:hover {
+            background-color: #eaeef2 !important;
+        }
+
+        /* Info/Warning/Error boxes */
+        .stInfo, .stWarning, .stError, .stSuccess {
             color: #1f2328 !important;
         }
         </style>
