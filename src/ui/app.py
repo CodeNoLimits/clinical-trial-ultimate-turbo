@@ -274,7 +274,7 @@ from src.ui.styles import get_css
 theme_mode = st.sidebar.selectbox(
     "Theme Mode",
     ["Midnight Pro", "Clinical Clean"],
-    index=1,  # Temporarily Clinical Clean for testing
+    index=0,  # Default: Midnight Pro
     help="Midnight Pro (dark) or Clinical Clean (light)"
 )
 
