@@ -1,204 +1,355 @@
-
 import textwrap
 
 def get_css(theme: str) -> str:
     """
     Returns the CSS string for the selected theme.
-    
+
     Themes:
-    - "Standard": Clean, professional medical UI (Light)
-    - "Midnight": High-contrast dark mode
-    - "Neo-Glass": Premium, translucent glassmorphism with animations
+    - "Midnight Pro": Clean dark theme with readable text
+    - "Clinical Clean": Professional light theme
     """
-    
-    base_css = textwrap.dedent("""
-    <style>
-    /* Global Reset & Base */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-    }
-    
-    .stApp {
-        transition: background 0.5s ease;
-    }
 
-    /* Keyframe Animations */
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
-    @keyframes pulseGlow {
-        0% { box-shadow: 0 0 0 0 rgba(111, 66, 193, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(111, 66, 193, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(111, 66, 193, 0); }
-    }
-    </style>
-    """)
-    
     themes = {
-        "Standard": textwrap.dedent("""
+        "Midnight Pro": textwrap.dedent("""
         <style>
+        /* MIDNIGHT PRO - DARK THEME */
+
+        /* Main App Background */
         .stApp {
-            background-color: #f8f9fa;
-        }
-        
-        div[data-testid="stExpander"] {
-            background-color: #ffffff;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .stButton button {
-            background-color: #0d6efd;
-            color: white;
-            border-radius: 8px;
-            border: none;
-            transition: all 0.2s;
-        }
-        .stButton button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
-        }
-        </style>
-        """),
-        
-        "Midnight": textwrap.dedent("""
-        <style>
-        .stApp {
-            background-color: #0f111a;
-            color: #e0e0e0;
-        }
-        
-        h1, h2, h3, h4, h5, h6, label, .stMarkdown, p {
-            color: #e0e0e0 !important;
-        }
-        
-        .stTextInput input, .stNumberInput input, .stSelectbox, .stTextArea textarea {
-            background-color: #1a1d2d;
-            color: white;
-            border: 1px solid #2d3248;
-        }
-        
-        div[data-testid="stExpander"] {
-            background-color: #1a1d2d;
-            border: 1px solid #2d3248;
-        }
-        </style>
-        """),
-        
-        "Neo-Glass": textwrap.dedent("""
-        <style>
-        /* GLASSMORPHISM BACKGROUND */
-        .stApp {
-            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #90f2ff, #f3c4fb);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background-color: #0d1117;
         }
 
-        /* GLASS CONTAINERS */
-        .stMarkdown, div[data-testid="stExpander"], .stForm, div[data-testid="stVerticalBlock"] > div {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* SIDEBAR GLASS */
-        section[data-testid="stSidebar"] {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
+        /* ALL TEXT - Make everything readable */
+        .stApp, .stApp p, .stApp span, .stApp label, .stApp div {
+            color: #e6edf3 !important;
         }
 
-        /* INPUTS */
-        .stTextInput input, .stNumberInput input, .stSelectbox div[data-baseweb="select"], .stTextArea textarea {
-            background: rgba(255, 255, 255, 0.4) !important;
-            border: 1px solid rgba(255, 255, 255, 0.5) !important;
-            border-radius: 12px !important;
-            color: #333 !important;
-            transition: all 0.3s ease;
-        }
-        
-        .stTextInput input:focus, .stNumberInput input:focus, .stTextArea textarea:focus {
-            background: rgba(255, 255, 255, 0.7) !important;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            transform: scale(1.01);
-        }
-
-        /* BUTTONS */
-        .stButton button {
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(4px);
-            color: #2c3e50;
+        /* Headers */
+        .stApp h1 {
+            color: #ffffff !important;
             font-weight: 600;
-            border-radius: 30px;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            animation: slideUp 0.6s ease-out backwards;
+            font-size: 2.2rem;
         }
-        
+
+        .stApp h2 {
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .stApp h3 {
+            color: #e6edf3 !important;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        /* Markdown text */
+        .stMarkdown, .stMarkdown p, .stMarkdown span {
+            color: #e6edf3 !important;
+        }
+
+        /* Captions */
+        .stApp small, .stApp .caption, [data-testid="stCaptionContainer"] {
+            color: #8b949e !important;
+        }
+
+        /* Labels above inputs */
+        .stTextInput label, .stNumberInput label, .stSelectbox label, .stTextArea label,
+        .stRadio label, .stCheckbox label, .stMultiSelect label {
+            color: #e6edf3 !important;
+            font-weight: 500;
+        }
+
+        /* Input fields */
+        .stTextInput input, .stNumberInput input, .stTextArea textarea {
+            background-color: #161b22 !important;
+            border: 1px solid #30363d !important;
+            border-radius: 6px;
+            color: #e6edf3 !important;
+        }
+
+        .stTextInput input:focus, .stNumberInput input:focus, .stTextArea textarea:focus {
+            border-color: #58a6ff !important;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15) !important;
+        }
+
+        /* Selectbox */
+        .stSelectbox div[data-baseweb="select"] {
+            background-color: #161b22 !important;
+            border-color: #30363d !important;
+        }
+
+        .stSelectbox div[data-baseweb="select"] span {
+            color: #e6edf3 !important;
+        }
+
+        /* Sidebar */
+        section[data-testid="stSidebar"] {
+            background-color: #161b22 !important;
+        }
+
+        section[data-testid="stSidebar"] .stMarkdown,
+        section[data-testid="stSidebar"] p,
+        section[data-testid="stSidebar"] span,
+        section[data-testid="stSidebar"] label {
+            color: #e6edf3 !important;
+        }
+
+        /* Tabs */
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: transparent;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            color: #8b949e !important;
+        }
+
+        .stTabs [aria-selected="true"] {
+            color: #58a6ff !important;
+            border-bottom-color: #58a6ff !important;
+        }
+
+        /* Buttons */
+        .stButton button {
+            background-color: #21262d !important;
+            color: #e6edf3 !important;
+            border: 1px solid #30363d !important;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
         .stButton button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            background: rgba(255, 255, 255, 0.6);
-            border-color: #fff;
-        }
-        
-        .stButton button:active {
-            transform: translateY(-1px);
+            background-color: #30363d !important;
+            border-color: #8b949e !important;
         }
 
-        /* Primary Button "Wow" Effect */
-        button[kind="primary"] {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-            color: white !important;
-            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
-            animation: pulseGlow 2s infinite;
+        /* Primary Button */
+        .stButton button[kind="primary"],
+        button[kind="primary"],
+        .stButton button[data-testid="baseButton-primary"] {
+            background-color: #238636 !important;
+            color: #ffffff !important;
+            border: 1px solid #2ea043 !important;
         }
 
-        /* ANIMATED HEADERS */
-        h1 {
-            background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: -1px;
-            animation: fadeIn 1.2s ease-out;
-        }
-        
-        h2, h3 {
-            color: #4a4a4a;
-            animation: slideUp 0.8s ease-out;
+        .stButton button[kind="primary"]:hover,
+        button[kind="primary"]:hover {
+            background-color: #2ea043 !important;
         }
 
-        /* CARDS / CONTAINERS ANIMATION */
-        .element-container, .stForm {
-            animation: slideUp 0.5s ease-out backwards;
+        /* Metrics */
+        [data-testid="stMetricValue"] {
+            color: #ffffff !important;
         }
-        .element-container:nth-child(1) { animation-delay: 0.1s; }
-        .element-container:nth-child(2) { animation-delay: 0.2s; }
-        .element-container:nth-child(3) { animation-delay: 0.3s; }
-        
+
+        [data-testid="stMetricLabel"] {
+            color: #8b949e !important;
+        }
+
+        /* Dataframes */
+        .stDataFrame {
+            border: 1px solid #30363d !important;
+        }
+
+        /* Expanders */
+        .streamlit-expanderHeader {
+            background-color: #161b22 !important;
+            color: #e6edf3 !important;
+        }
+
+        /* Alerts */
+        .stAlert {
+            background-color: #161b22 !important;
+            border: 1px solid #30363d !important;
+        }
+
+        /* Dividers */
+        hr {
+            border-color: #30363d !important;
+        }
+
+        /* File uploader */
+        [data-testid="stFileUploader"] {
+            background-color: #161b22 !important;
+            border: 1px dashed #30363d !important;
+        }
+
+        [data-testid="stFileUploader"] label {
+            color: #e6edf3 !important;
+        }
+        </style>
+        """),
+
+        "Clinical Clean": textwrap.dedent("""
+        <style>
+        /* CLINICAL CLEAN - LIGHT THEME */
+
+        /* Main App Background */
+        .stApp {
+            background-color: #ffffff;
+        }
+
+        /* ALL TEXT */
+        .stApp, .stApp p, .stApp span, .stApp label, .stApp div {
+            color: #1f2328 !important;
+        }
+
+        /* Headers */
+        .stApp h1 {
+            color: #1f2328 !important;
+            font-weight: 600;
+            font-size: 2.2rem;
+        }
+
+        .stApp h2 {
+            color: #1f2328 !important;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .stApp h3 {
+            color: #1f2328 !important;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        /* Markdown text */
+        .stMarkdown, .stMarkdown p, .stMarkdown span {
+            color: #1f2328 !important;
+        }
+
+        /* Captions */
+        .stApp small, .stApp .caption, [data-testid="stCaptionContainer"] {
+            color: #656d76 !important;
+        }
+
+        /* Labels above inputs */
+        .stTextInput label, .stNumberInput label, .stSelectbox label, .stTextArea label,
+        .stRadio label, .stCheckbox label, .stMultiSelect label {
+            color: #1f2328 !important;
+            font-weight: 500;
+        }
+
+        /* Input fields */
+        .stTextInput input, .stNumberInput input, .stTextArea textarea {
+            background-color: #f6f8fa !important;
+            border: 1px solid #d0d7de !important;
+            border-radius: 6px;
+            color: #1f2328 !important;
+        }
+
+        .stTextInput input:focus, .stNumberInput input:focus, .stTextArea textarea:focus {
+            border-color: #0969da !important;
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15) !important;
+        }
+
+        /* Selectbox */
+        .stSelectbox div[data-baseweb="select"] {
+            background-color: #f6f8fa !important;
+            border-color: #d0d7de !important;
+        }
+
+        .stSelectbox div[data-baseweb="select"] span {
+            color: #1f2328 !important;
+        }
+
+        /* Sidebar */
+        section[data-testid="stSidebar"] {
+            background-color: #f6f8fa !important;
+            border-right: 1px solid #d0d7de !important;
+        }
+
+        section[data-testid="stSidebar"] .stMarkdown,
+        section[data-testid="stSidebar"] p,
+        section[data-testid="stSidebar"] span,
+        section[data-testid="stSidebar"] label {
+            color: #1f2328 !important;
+        }
+
+        /* Tabs */
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: transparent;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            color: #656d76 !important;
+        }
+
+        .stTabs [aria-selected="true"] {
+            color: #0969da !important;
+            border-bottom-color: #0969da !important;
+        }
+
+        /* Buttons */
+        .stButton button {
+            background-color: #f6f8fa !important;
+            color: #1f2328 !important;
+            border: 1px solid #d0d7de !important;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .stButton button:hover {
+            background-color: #eaeef2 !important;
+            border-color: #afb8c1 !important;
+        }
+
+        /* Primary Button */
+        .stButton button[kind="primary"],
+        button[kind="primary"],
+        .stButton button[data-testid="baseButton-primary"] {
+            background-color: #1f883d !important;
+            color: #ffffff !important;
+            border: 1px solid #1a7f37 !important;
+        }
+
+        .stButton button[kind="primary"]:hover,
+        button[kind="primary"]:hover {
+            background-color: #1a7f37 !important;
+        }
+
+        /* Metrics */
+        [data-testid="stMetricValue"] {
+            color: #1f2328 !important;
+        }
+
+        [data-testid="stMetricLabel"] {
+            color: #656d76 !important;
+        }
+
+        /* Dataframes */
+        .stDataFrame {
+            border: 1px solid #d0d7de !important;
+        }
+
+        /* Expanders */
+        .streamlit-expanderHeader {
+            background-color: #f6f8fa !important;
+            color: #1f2328 !important;
+        }
+
+        /* Alerts */
+        .stAlert {
+            background-color: #f6f8fa !important;
+            border: 1px solid #d0d7de !important;
+        }
+
+        /* Dividers */
+        hr {
+            border-color: #d0d7de !important;
+        }
+
+        /* File uploader */
+        [data-testid="stFileUploader"] {
+            background-color: #f6f8fa !important;
+            border: 1px dashed #d0d7de !important;
+        }
+
+        [data-testid="stFileUploader"] label {
+            color: #1f2328 !important;
+        }
         </style>
         """)
     }
-    
-    return base_css + themes.get(theme, themes["Standard"])
+
+    return themes.get(theme, themes["Midnight Pro"])
