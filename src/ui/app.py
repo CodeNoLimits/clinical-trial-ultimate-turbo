@@ -272,10 +272,10 @@ from src.ui.styles import get_css
 
 # Sidebar Theme Selector
 theme_mode = st.sidebar.selectbox(
-    "Theme Mode", 
-    ["Neo-Glass", "Standard", "Midnight"],
+    "Theme Mode",
+    ["Midnight Pro", "Clinical Clean"],
     index=0,
-    help="Select 'Neo-Glass' for the premium animated experience."
+    help="Midnight Pro (dark) or Clinical Clean (light)"
 )
 
 # Inject CSS based on selection
